@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.awesomefat.csc518_listexample.AirportTree.ATree;
+import com.example.awesomefat.csc518_listexample.yelp.YelpAPI;
+import com.example.awesomefat.csc518_listexample.yelp.YelpActivity;
 
 public class AirportTreeViewActivity extends AppCompatActivity
 {
@@ -58,5 +60,17 @@ public class AirportTreeViewActivity extends AppCompatActivity
         {
             this.rightButton.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void onYelpButtonPressed(View v)
+    {
+        Intent i = new Intent(this, YelpActivity.class);
+        Core.businessesArrayList.clear();
+        YelpAPI yelp = new YelpAPI();
+        yelp.start();
+        //Core.currTree.payload.city = this.locationTV.toString();
+        i.putExtra("airportCode", this.airportCodeTV.toString());
+        i.putExtra("location", this.locationTV.toString());
+        this.startActivity(i);
     }
 }

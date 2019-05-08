@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Airport implements Serializable
 {
-    public String name;
+    public String airportName;
     public String country;
     public String region;
     public String city;
@@ -12,7 +12,7 @@ public class Airport implements Serializable
 
     public Airport(String name, String country, String region, String city, String airportCode)
     {
-        this.name = name;
+        this.airportName = name;
         this.country = country;
         this.region = region;
         this.city = city;
@@ -44,7 +44,7 @@ public class Airport implements Serializable
 
     public void sanitize()
     {
-        this.name = this.removeQuotes(this.name);
+        this.airportName = this.removeQuotes(this.airportName);
         this.country = this.removeQuotes(this.country);
         this.airportCode = this.removeQuotes(this.airportCode);
         this.city = this.removeQuotes(this.city);
@@ -56,7 +56,7 @@ public class Airport implements Serializable
     {
         filterString = filterString.toLowerCase();
 
-        return this.name.toLowerCase().contains(filterString) ||
+        return this.airportName.toLowerCase().contains(filterString) ||
                 this.city.toLowerCase().contains(filterString) ||
                 this.region.toLowerCase().contains(filterString) ||
                 this.airportCode.toLowerCase().contains(filterString) ||
@@ -70,6 +70,6 @@ public class Airport implements Serializable
 
     public void display()
     {
-        System.out.println("*** " + this.name + "\t" + this.country + "\t" + this.region + "\t" + this.city + "\t" + this.airportCode);
+        System.out.println("*** " + this.airportName + "\t" + this.country + "\t" + this.region + "\t" + this.city + "\t" + this.airportCode);
     }
 }

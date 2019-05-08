@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.awesomefat.csc518_listexample.AirportTree.AirportTree;
+import com.example.awesomefat.csc518_listexample.yelp.YelpActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,13 +69,13 @@ public class AirportListActivity extends AppCompatActivity
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     temp = ds.getValue(Airport.class);
+                    System.out.println("*** Adding to the tree");
                     atree.add(temp);
                     //temp.sanitize();
                     theAirports.add(temp);
-                    //keys.add(ds.getKey());
+                    keys.add(ds.getKey());
                     theAirportStrings.add(temp.toString());
                 }
-
                 /*
                 for(int i = 0; i < theAirports.size(); i++)
                 {

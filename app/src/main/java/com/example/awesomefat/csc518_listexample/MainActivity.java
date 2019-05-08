@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        YelpAPI yelp = new YelpAPI();
-        yelp.start();
+//        YelpAPI yelp = new YelpAPI();
+//        yelp.start();
 
         BinaryTree bt = new BinaryTree();
         bt.addValue(5);

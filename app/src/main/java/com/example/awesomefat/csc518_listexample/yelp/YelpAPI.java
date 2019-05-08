@@ -1,5 +1,7 @@
 package com.example.awesomefat.csc518_listexample.yelp;
 
+import com.example.awesomefat.csc518_listexample.Core;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -10,11 +12,14 @@ public class YelpAPI extends Thread
 {
     public void run()
     {
+
         try
         {
-            URL airportURL = new URL("https://api.yelp.com/v3/businesses/search?location=Milwaukee, WI&categories=restaurants");
+            // Core.currTree.payload.city + Core.currTree.payload.region
+            URL airportURL = new URL("https://api.yelp.com/v3/businesses/search?location=" + Core.currTree.payload.city + ", " + Core.currTree.payload.region.split("-")[1] +
+                    "&categories=restaurants");
             HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection();
-            conn.setRequestProperty("Authorization", "Bearer _fudvZjjQRmQpuzZTXjRDPxJeLlYw8rGTsrzZNknmb_B7AA7ilLpaYgwHl-nM8UmgEKWI3rs7DPYseiuGzUmEybSLzLiGIiQVLFExouUcl-mKZQtHTymfnB1AgDJXHYx");
+            conn.setRequestProperty("Authorization", "Bearer SV8YFmRSUiCnvnCcjijA0Tj1DAS5kkPPR2iG-r4MUf162PczJhWtBmklN9gdQFENqCKMeGVE2dyLpEESk8sgabPAsvjo8J6RH0GNVmeDaHHpeDBFNeytfN1oIQDJXHYx");
             Scanner input = new Scanner(conn.getInputStream());
             String data = "";
 
@@ -24,11 +29,12 @@ public class YelpAPI extends Thread
             }
             input.close();
             System.out.println("*** DATA: " + data);
-            JSONObject obj = new JSONObject(data);
-            JSONArray businesses = obj.getJSONArray("businesses");
-            for(int i = 0; i < businesses.length(); i++)
+            Core.obj = new JSONObject(data);
+            Core.businesses = Core.obj.getJSONArray("businesses");
+            for(int i = 0; i < Core.businesses.length(); i++)
             {
-                String name = businesses.getJSONObject(i).getString("name");
+                String name = Core.businesses.getJSONObject(i).getString("name");
+                Core.businessesArrayList.add(name);
                 System.out.println("*** " + name);
             }
 
